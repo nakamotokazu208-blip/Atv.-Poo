@@ -1,0 +1,49 @@
+Atv. POO 
+
+public class ContaBancaria {
+    private int numeroConta;
+    private double saldo;
+
+    public ContaBancaria(int numeroConta, double saldoInicial) {
+        this.numeroConta = numeroConta;
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.println("Depósito de R$" + valor + " realizado. Saldo atual: R$" + this.saldo);
+        } else {
+            System.out.println("O valor do depósito deve ser positivo.");
+        }
+    }
+
+    public void sacar(double valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            System.out.println("Saque de R$" + valor + " realizado. Saldo atual: R$" + this.saldo);
+        } else if (valor <= 0) {
+            System.out.println("O valor do saque deve ser positivo.");
+        } else {
+            System.out.println("Saldo insuficiente. Saldo atual: R$" + this.saldo);
+        }
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+}
+
+public class Principal {
+    public static void main(String args[]) {
+        ContaBancaria minhaConta = new ContaBancaria(12345, 100.0);
+        
+        System.out.println("Saldo inicial: R$" + minhaConta.getSaldo());
+
+        minhaConta.depositar(50.0);
+
+        minhaConta.sacar(75.0);
+        
+        minhaConta.sacar(100.0);
+    }
+}
